@@ -19,13 +19,14 @@ Microservices-based credit scoring system.
 
 ## Development
 
+### Frontend
+```bash
+cd frontend-ui
+npm install
+npm run dev
+```
+
 ### Backend Services
 ```bash
 cd api-gateway
 mvn spring-boot:run
-
-### Frontend
-
-cd frontend-ui
-npm install
-npm run dev
