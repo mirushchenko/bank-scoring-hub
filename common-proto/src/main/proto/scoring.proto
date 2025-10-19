@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package common;
+
+option java_multiple_files = true;
+option java_package = "com.example.common";
+
+import "client_info.proto";
+
+message ScoringRequest {
+  ClientInfo client_info = 1;
+}
+
+message ScoringResponse {
+  string client_id = 1;
+  int32 score = 2;
+  string risk_level = 3;
+  string description = 4;
+}
+
+service ScoringService {
+  rpc CalculateScore(ScoringRequest) returns (ScoringResponse);
+}

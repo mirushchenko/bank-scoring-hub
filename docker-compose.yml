@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: bank_scoring
+      POSTGRES_USER: bank_user
+      POSTGRES_PASSWORD: bank_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - bank-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bank_user -d bank_scoring"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  client-info-service:
+    build: ./client-info-service
+    ports:
+      - "9090:9090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/bank_scoring
+      - SPRING_DATASOURCE_USERNAME=bank_user
+      - SPRING_DATASOURCE_PASSWORD=bank_password
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - bank-network
+
+  scoring-service:
+    build: ./scoring-service
+    ports:
+      - "9091:9091"
+    networks:
+      - bank-network
+    depends_on:
+      - client-info-service
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - grpc.client.client-info-service.address=static://client-info-service:9090
+      - grpc.client.scoring-service.address=static://scoring-service:9091
+    depends_on:
+      - client-info-service
+      - scoring-service
+    networks:
+      - bank-network
+
+  frontend:
+    build: ./frontend-ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - bank-network
+
+networks:
+  bank-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

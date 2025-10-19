@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package common;
+
+option java_multiple_files = true;
+option java_package = "com.example.common";
+
+message ClientRequest {
+  string client_id = 1;
+}
+
+message ClientInfo {
+  string client_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int32 age = 4;
+  string passport_number = 5;
+  int32 request_count = 6;
+}
+
+service ClientInfoService {
+  rpc GetClientInfo(ClientRequest) returns (ClientInfo);
+}
