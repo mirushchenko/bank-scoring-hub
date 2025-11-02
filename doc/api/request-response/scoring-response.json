@@ -1,1 +1,46 @@
-
+{
+  "success": true,
+  "clientInfo": {
+    "clientId": "CLIENT_001",
+    "firstName": "Иван",
+    "lastName": "Петров",
+    "middleName": "Сергеевич",
+    "birthDate": "1985-05-15",
+    "phoneNumber": "+79999999999",
+    "email": "ivan.petrov@email.ru",
+    "registrationDate": "2020-03-10"
+  },
+  "scoringResult": {
+    "score": 85,
+    "riskLevel": "LOW",
+    "decision": "APPROVED",
+    "creditLimit": 500000,
+    "interestRate": 12.5,
+    "reasons": [
+      "Хорошая кредитная история",
+      "Стабильный доход",
+      "Низкий уровень долговой нагрузки"
+    ],
+    "warnings": [
+      "Недавно открытая кредитная карта"
+    ]
+  },
+  "financialData": {
+    "monthlyIncome": 150000,
+    "employmentType": "FULL_TIME",
+    "employmentDuration": 36,
+    "totalDebt": 75000,
+    "debtToIncomeRatio": 0.15
+  },
+  "scoringMetadata": {
+    "calculationId": "SCORING_2024_001",
+    "calculationDate": "2024-01-15T14:30:00Z",
+    "modelVersion": "2.1",
+    "processingTimeMs": 245
+  },
+  "nextSteps": {
+    "validUntil": "2024-01-22T14:30:00Z",
+    "requiredDocuments": ["ПАСПОРТ", "СПРАВКА_О_ДОХОДАХ"],
+    "applicationUrl": "/api/credit-application/SCORING_2024_001"
+  }
+}
