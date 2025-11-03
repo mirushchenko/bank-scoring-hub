@@ -1,1 +1,22 @@
-
+{
+  "requestId": "REQ_2024_001",
+  "timestamp": "2024-01-15T14:30:00Z",
+  "clientId": "CLIENT_001",
+  "searchType": "FULL_SCORING",
+  "parameters": {
+    "includeFinancialData": true,
+    "includeCreditHistory": true,
+    "includeBehavioralData": false,
+    "scoringModel": "STANDARD_V2"
+  },
+  "requestedFields": [
+    "PERSONAL_INFO",
+    "FINANCIAL_DATA", 
+    "SCORING_RESULT",
+    "CREDIT_LIMIT",
+    "INTEREST_RATE"
+  ],
+  "sourceSystem": "ONLINE_BANKING",
+  "operatorId": "USER_12345",
+  "channel": "WEB"
+}
