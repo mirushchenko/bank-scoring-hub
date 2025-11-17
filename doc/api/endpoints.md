@@ -18,7 +18,7 @@ clientId (path) - ID клиента (CLIENT_001, CLIENT_002, CLIENT_003)
 ```http
 GET http://localhost:8080/api/client-scoring/CLIENT_001
 ```
-## Успешный ответ (200):
+## Успешный ответ (200 OK):
 
 
 ```
@@ -37,7 +37,7 @@ GET http://localhost:8080/api/client-scoring/CLIENT_001
   }
 }
 ```
-## Ошибка (404):
+## Ошибка (404 Not Found):
 
 ```
 {
@@ -58,7 +58,7 @@ GET /health
 ```http
 GET http://localhost:8080/api/health
 ```
-## Ответ (200):
+## Ответ (200 OK):
 
 ```
 {
